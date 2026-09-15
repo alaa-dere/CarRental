@@ -28,4 +28,21 @@ public class UserService : IUserService
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
     }
+    
+    public async Task<User?> ValidateCredentialsAsync(string email, string password)
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(user => user.Email == email);
+        if (user == null)
+        {
+            return null;
+        }
+
+        var result = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, password);
+        if (result == PasswordVerificationResult.Failed)
+        {
+            return null;
+        }
+
+        return user;
+    }
 }
