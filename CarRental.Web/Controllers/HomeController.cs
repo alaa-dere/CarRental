@@ -20,11 +20,34 @@ public class HomeController : Controller
     }
 
     [Authorize]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string? location, DateTime? startDate, DateTime? endDate, string? make)
     {
-        var cars = await _carService.GetAvailableCarsAsync();
+        var model = new CarSearchViewModel
+        {
+            Location = location,
+            StartDate = startDate,
+            EndDate = endDate,
+            Make = make
+        };
 
-        return View(cars);
+        if (startDate.HasValue != endDate.HasValue)
+        {
+            ModelState.AddModelError(nameof(model.EndDate), "Both start date and end date are required when searching by date.");
+            model.Cars = await _carService.GetAvailableCarsAsync();
+
+            return View(model);
+        }
+        
+        if (startDate.HasValue && endDate.HasValue && endDate.Value <= startDate.Value)
+        {
+            ModelState.AddModelError(nameof(model.EndDate), "End date must be after start date.");
+            model.Cars = await _carService.GetAvailableCarsAsync();
+
+            return View(model);
+        }
+
+        model.Cars = await _carService.SearchAvailableCarsAsync(location, startDate, endDate, make);
+        return View(model);
     }
 
     public IActionResult Privacy()
