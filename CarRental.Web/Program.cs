@@ -1,5 +1,7 @@
 using CarRental.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using CarRental.Business.Services;
+using CarRental.Business.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<CarRentalDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CarRentalConnection")));
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 
