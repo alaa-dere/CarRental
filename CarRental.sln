@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# 
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Domain", "CarRental.Domain\CarRental.Domain.csproj", "{249429F4-8C68-4578-BAB6-991A9EA8898E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Business", "CarRental.Business\CarRental.Business.csproj", "{268D4542-8003-41BB-8B3A-493E2F23C425}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Data", "CarRental.Data\CarRental.Data.csproj", "{E5A63CBE-A7CD-4334-88A7-565187BC4F40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.Web", "CarRental.Web\CarRental.Web.csproj", "{68E11F82-881D-4452-ADCA-DD50C1AFE423}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{249429F4-8C68-4578-BAB6-991A9EA8898E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{249429F4-8C68-4578-BAB6-991A9EA8898E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{249429F4-8C68-4578-BAB6-991A9EA8898E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{249429F4-8C68-4578-BAB6-991A9EA8898E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{268D4542-8003-41BB-8B3A-493E2F23C425}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{268D4542-8003-41BB-8B3A-493E2F23C425}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{268D4542-8003-41BB-8B3A-493E2F23C425}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{268D4542-8003-41BB-8B3A-493E2F23C425}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5A63CBE-A7CD-4334-88A7-565187BC4F40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5A63CBE-A7CD-4334-88A7-565187BC4F40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5A63CBE-A7CD-4334-88A7-565187BC4F40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5A63CBE-A7CD-4334-88A7-565187BC4F40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68E11F82-881D-4452-ADCA-DD50C1AFE423}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68E11F82-881D-4452-ADCA-DD50C1AFE423}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68E11F82-881D-4452-ADCA-DD50C1AFE423}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68E11F82-881D-4452-ADCA-DD50C1AFE423}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
