@@ -1,8 +1,77 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model List<CarRental.Domain.Entities.Car>
+
+@{
+    ViewData["Title"] = "Available Cars";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2>Available Cars</h2>
+
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <p class="text-muted mb-0">
+                    Welcome, @User.Identity.Name
+                </p>
+            }
+        </div>
+
+        <form asp-controller="Account"
+              asp-action="Logout"
+              method="post">
+
+            <button type="submit"
+                    class="btn btn-outline-danger">
+                Logout
+            </button>
+        </form>
+    </div>
+
+    @if (Model.Count == 0)
+    {
+        <div class="alert alert-info">
+            No available cars found.
+        </div>
+    }
+    else
+    {
+        <div class="row">
+
+            @foreach (var car in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+
+                        <div class="card-body">
+
+                            <h4 class="card-title">
+                                @car.Make @car.Model
+                            </h4>
+
+                            <p class="card-text">
+                                <strong>Year:</strong>
+                                @car.Year
+                            </p>
+
+                            <p class="card-text">
+                                <strong>Location:</strong>
+                                @car.Location
+                            </p>
+
+                            <p class="card-text">
+                                <strong>Price per day:</strong>
+                                $@car.PricePerDay.ToString("0.00")
+                            </p>
+
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+        </div>
+    }
+
 </div>
