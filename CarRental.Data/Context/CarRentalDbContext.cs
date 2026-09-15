@@ -17,5 +17,6 @@ public class CarRentalDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<User>().HasIndex(user => user.Email).IsUnique();
+        modelBuilder.Entity<Car>().Property(car => car.PricePerDay).HasPrecision(10, 2);
     }
 }
