@@ -5,6 +5,20 @@
 }
 
 <div class="container mt-4">
+    
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
@@ -48,7 +62,7 @@
 
                         <input asp-for="Location"
                                class="form-control"
-                               placeholder="e.g. Nablus" />
+                               placeholder="e.g. Nablus"/>
                     </div>
 
 
@@ -59,7 +73,7 @@
                         </label>
 
                         <input asp-for="StartDate"
-                               class="form-control" />
+                               class="form-control"/>
                     </div>
 
 
@@ -70,7 +84,7 @@
                         </label>
 
                         <input asp-for="EndDate"
-                               class="form-control" />
+                               class="form-control"/>
 
                         <span asp-validation-for="EndDate"
                               class="text-danger"></span>
@@ -83,7 +97,7 @@
 
                         <input asp-for="Make"
                                class="form-control"
-                               placeholder="e.g. Toyota" />
+                               placeholder="e.g. Toyota"/>
                     </div>
 
                 </div>
@@ -144,6 +158,33 @@
                                 <strong>Price per day:</strong>
                                 $@car.PricePerDay.ToString("0.00")
                             </p>
+                            
+                            @if (Model.StartDate.HasValue &&
+                                 Model.EndDate.HasValue)
+                            {
+                                <form asp-controller="Reservation"
+                                      asp-action="Create"
+                                      method="post">
+
+                                    <input type="hidden"
+                                           name="CarId"
+                                           value="@car.Id" />
+
+                                    <input type="hidden"
+                                           name="StartDate"
+                                           value="@Model.StartDate.Value.ToString("yyyy-MM-dd")" />
+
+                                    <input type="hidden"
+                                           name="EndDate"
+                                           value="@Model.EndDate.Value.ToString("yyyy-MM-dd")" />
+
+                                    <button type="submit"
+                                            class="btn btn-success">
+                                        Book
+                                    </button>
+
+                                </form>
+                            }
 
                         </div>
 
