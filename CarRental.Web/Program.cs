@@ -26,6 +26,7 @@ builder.Services.AddAuthorization();
 builder.Services.AddDbContext<CarRentalDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CarRentalConnection")));
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ICarService, CarService>();
 
 var app = builder.Build();
 
