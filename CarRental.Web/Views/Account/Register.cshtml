@@ -1,0 +1,187 @@
+@model CarRental.Web.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Sign Up";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="mb-4">Create Account</h2>
+
+            <form asp-controller="Account"
+                  asp-action="Register"
+                  method="post">
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger mb-3"></div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="FirstName" class="form-label"></label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName"
+                              class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="LastName" class="form-label"></label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName"
+                              class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password"
+                           class="form-control"
+                           id="password" />
+
+                    <div class="mt-1">
+                        Password strength:
+                        <span id="passwordStrength">Not entered</span>
+                    </div>
+
+                    <span asp-validation-for="Password"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ConfirmPassword" class="form-label"></label>
+                    <input asp-for="ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Phone" class="form-label"></label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DateOfBirth" class="form-label">
+                        Date of Birth (Optional)
+                    </label>
+                    <input asp-for="DateOfBirth"
+                           type="date"
+                           class="form-control" />
+                    <span asp-validation-for="DateOfBirth"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AddressLine1" class="form-label">
+                        Address Line 1
+                    </label>
+                    <input asp-for="AddressLine1" class="form-control" />
+                    <span asp-validation-for="AddressLine1"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AddressLine2" class="form-label">
+                        Address Line 2 (Optional)
+                    </label>
+                    <input asp-for="AddressLine2" class="form-control" />
+                    <span asp-validation-for="AddressLine2"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="City" class="form-label"></label>
+                    <input asp-for="City" class="form-control" />
+                    <span asp-validation-for="City"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Country" class="form-label"></label>
+
+                    <select asp-for="Country" class="form-select">
+                        <option value="">-- Select Country --</option>
+                        <option value="Palestine">Palestine</option>
+                        <option value="Jordan">Jordan</option>
+                        <option value="Saudi Arabia">Saudi Arabia</option>
+                        <option value="United Arab Emirates">
+                            United Arab Emirates
+                        </option>
+                        <option value="Egypt">Egypt</option>
+                    </select>
+
+                    <span asp-validation-for="Country"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DriverLicenseNumber"
+                           class="form-label">
+                        Driver License Number
+                    </label>
+
+                    <input asp-for="DriverLicenseNumber"
+                           class="form-control" />
+
+                    <span asp-validation-for="DriverLicenseNumber"
+                          class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    Sign Up
+                </button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        const passwordInput = document.getElementById("password");
+        const strengthText = document.getElementById("passwordStrength");
+
+        passwordInput.addEventListener("input", function () {
+            const password = passwordInput.value;
+            let score = 0;
+
+            if (password.length >= 8)
+                score++;
+
+            if (/[A-Z]/.test(password))
+                score++;
+
+            if (/[a-z]/.test(password))
+                score++;
+
+            if (/[0-9]/.test(password))
+                score++;
+
+            if (/[^A-Za-z0-9]/.test(password))
+                score++;
+
+            if (password.length === 0) {
+                strengthText.textContent = "Not entered";
+            }
+            else if (score <= 2) {
+                strengthText.textContent = "Weak";
+            }
+            else if (score <= 4) {
+                strengthText.textContent = "Medium";
+            }
+            else {
+                strengthText.textContent = "Strong";
+            }
+        });
+    </script>
+}

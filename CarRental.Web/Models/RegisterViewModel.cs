@@ -28,6 +28,7 @@ public class RegisterViewModel
     public string Phone { get; set; } = string.Empty;
 
     [DataType(DataType.Date)]
+    [CustomValidation(typeof(RegisterViewModel), nameof(ValidateDateOfBirth))]
     public DateTime? DateOfBirth { get; set; }
 
     [Required]
@@ -43,4 +44,19 @@ public class RegisterViewModel
 
     [Required]
     public string DriverLicenseNumber { get; set; } = string.Empty;
+    
+    public static ValidationResult? ValidateDateOfBirth(DateTime? dateOfBirth, ValidationContext context)
+    {
+        if (dateOfBirth == null)
+        {
+            return ValidationResult.Success;
+        }
+
+        if (dateOfBirth.Value.Date > DateTime.Today)
+        {
+            return new ValidationResult("Date of birth cannot be in the future.");
+        }
+
+        return ValidationResult.Success;
+    }
 }
