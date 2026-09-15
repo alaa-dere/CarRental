@@ -1,7 +1,12 @@
+using CarRental.Data.Context;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<CarRentalDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CarRentalConnection")));
 
 var app = builder.Build();
 

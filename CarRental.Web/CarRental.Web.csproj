@@ -3,6 +3,7 @@
     <ItemGroup>
       <ProjectReference Include="..\CarRental.Business\CarRental.Business.csproj" />
       <ProjectReference Include="..\CarRental.Domain\CarRental.Domain.csproj" />
+      <ProjectReference Include="..\CarRental.Data\CarRental.Data.csproj" />
     </ItemGroup>
 
     <PropertyGroup>
