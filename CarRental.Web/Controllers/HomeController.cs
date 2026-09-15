@@ -1,21 +1,30 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using CarRental.Web.Models;
+using CarRental.Business.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarRental.Web.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly ICarService _carService;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(
+        ILogger<HomeController> logger,
+        ICarService carService)
     {
         _logger = logger;
+        _carService = carService;
     }
 
-    public IActionResult Index()
+    [Authorize]
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var cars = await _carService.GetAvailableCarsAsync();
+
+        return View(cars);
     }
 
     public IActionResult Privacy()
