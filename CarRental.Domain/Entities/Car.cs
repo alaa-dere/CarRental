@@ -9,4 +9,5 @@ public class Car
     public string Location { get; set; } = string.Empty;
     public decimal PricePerDay { get; set; }
     public bool IsAvailable { get; set; }
+    public ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
 }
