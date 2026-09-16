@@ -32,15 +32,23 @@
             }
         </div>
 
-        <form asp-controller="Account"
-              asp-action="Logout"
-              method="post">
+        <div class="d-flex">
+            <a asp-controller="Profile"
+               asp-action="Index"
+               class="btn btn-outline-primary me-2">
+                Profile Settings
+            </a>
 
-            <button type="submit"
-                    class="btn btn-outline-danger">
-                Logout
-            </button>
-        </form>
+            <form asp-controller="Account"
+                  asp-action="Logout"
+                  method="post">
+
+                <button type="submit"
+                        class="btn btn-outline-danger">
+                    Logout
+                </button>
+            </form>
+        </div>
     </div>
 
 

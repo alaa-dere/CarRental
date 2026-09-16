@@ -45,4 +45,20 @@ public class UserService : IUserService
 
         return user;
     }
+    
+    public async Task<User?> GetUserByIdAsync(int userId)
+    {
+        return await _context.Users.FirstOrDefaultAsync(user => user.Id == userId);
+    }
+
+    public async Task<bool> EmailExistsForAnotherUserAsync(string email, int userId)
+    {
+        return await _context.Users.AnyAsync(user => user.Email == email && user.Id != userId);
+    }
+
+    public async Task UpdateUserAsync(User user)
+    {
+        _context.Users.Update(user);
+        await _context.SaveChangesAsync();
+    }
 }
