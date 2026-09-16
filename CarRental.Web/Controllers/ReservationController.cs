@@ -25,7 +25,13 @@ public class ReservationController : Controller
         {
             return RedirectToAction("Index", "Home");
         }
-
+        
+        if (model.StartDate.Date < DateTime.Today)
+        {
+            TempData["ErrorMessage"] = "Start date cannot be in the past.";
+            return RedirectToAction("Index", "Home");
+        }
+        
         if (model.EndDate <= model.StartDate)
         {
             TempData["ErrorMessage"] = "End date must be after start date.";
@@ -38,8 +44,7 @@ public class ReservationController : Controller
             return Unauthorized();
         }
 
-        var isAvailable =
-            await _reservationService.IsCarAvailableAsync(model.CarId, model.StartDate, model.EndDate);
+        var isAvailable = await _reservationService.IsCarAvailableAsync(model.CarId, model.StartDate, model.EndDate);
 
         if (!isAvailable)
         {
